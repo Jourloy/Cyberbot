@@ -1,10 +1,15 @@
-import { registerAs } from '@nestjs/config';
 import { join } from 'path/posix';
 require('dotenv').config();
 const env = process.env;
-export default registerAs('app', () => ({
+export default {
 	app: {
 		port: env.APP_PORT,
+	},
+	discord: {
+		token: env.DISCORD_TOKEN,
+		guildID: env.DISCORD_GUILD,
+		modRoleID: env.DISCORD_MOD_ROLE_ID,
+		adminID: env.DISCORD_ADMIN_ID,
 	},
 	redis: {
 		host: env.REDIS_HOST,
@@ -26,4 +31,4 @@ export default registerAs('app', () => ({
 			migrationsDir: env.POSTGRES_CLI_MIGRATIONSDIR,
 		},
 	},
-}));
+};
